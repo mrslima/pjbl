@@ -34,7 +34,7 @@ typedef enum { masculino, feminino } generos;
 static char genero_str[2][9] = {"masculino", "feminino"};
 
 typedef struct {
-  generos genero;
+  char genero;
   char nome[MAX_STR_LEN];
   int idade;
   double altura;
@@ -47,14 +47,14 @@ typedef struct {
 bool readTextFile(char *filename, type_actors *arr);
 bool writeBinFile(char *filename, type_actors *data, int total);
 
-
 // Programa 2
 type_actors *readBinFile(char *filename, int *total);
-int decodeBin2Txt();
+bool writeTxtFile(char *filename, type_actors *data, int total);
 int printAll();
 int avgFilter();
 
 // Ambos
 int editarDados();
+int countFileLines(char *filename);
 
 #endif // TABELA_H_INCLUDED

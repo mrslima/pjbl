@@ -46,15 +46,15 @@ typedef struct {
 // Programa 1
 bool readTextFile(char *filename, type_actors *arr);
 bool writeBinFile(char *filename, type_actors *data, int total);
-type_actors *readData(char *filename, int *total);
 
 // Programa 2
-int readBinFile();
-int decodeBin2Txt();
+type_actors *readBinFile(char *filename, int *total);
+bool writeTxtFile(char *filename, type_actors *data, int total);
 int printAll();
 int avgFilter();
 
 // Ambos
 int editarDados();
+int countFileLines(char *filename);
 
 #endif // TABELA_H_INCLUDED

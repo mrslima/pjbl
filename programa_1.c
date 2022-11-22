@@ -11,52 +11,73 @@ int main(int argc, char *argv[]) {
   //        return 1;
   //    }
 
-  //    char *path = argv[1];
+  // char *path = argv[1];
+  char *path = "meuArquivo.txt";
+
+
+  const int array_size = countFileLines("originalActors.txt");
 
   type_actors *arr_actors;
-  arr_actors = malloc(sizeof(type_actors) * ARRAY_SIZE);
+  arr_actors = malloc(sizeof(type_actors) * array_size);
 
-  if (readTextFile("txtAtores.txt", arr_actors)) {
-    puts("Read data OK.\n");
+  
+  // Lê o conteúdo do arquivo .txt e armazena num array de struct
+  if (readTextFile("originalActors.txt", arr_actors)) {
+    printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
   } else {
-    puts("Error reading to file.\n");
+    printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
     return 1;
   }
 
-  if (writeBinFile("binAtores.bin", arr_actors, ARRAY_SIZE)) {
-    puts("Write data OK.\n");
+  // Pega o conteúdo do array de strutc e escreve (em binário) num arquivo .bin
+  if (writeBinFile("binActors.bin", arr_actors, array_size)) {
+    printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
   } else {
-    puts("Error writing to file.\n");
+    printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
     return 1;
   }
 
+  //  Limpa o array de struct
   free(arr_actors);
 
 
 
-  // Programa 2
+
+  // PROGRAMA 2
+
   int total = 0;
   type_actors *file_data;
 
-  file_data = readBinFile("binAtores.bin", &total);
+  file_data = readBinFile("binActors.bin", &total);
 
   if (file_data == NULL) {
-    puts("Error reading from file!\n");
+    printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
     return 1;
   }
+  printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
 
-  puts("Data read OK\n\n");
-  for (int i = 0; i < ARRAY_SIZE; i++) {
+  
+  for (int i = 0; i < array_size; i++) {
     printf("----- Pessoa %d -----\n", i);
-    printf("\tGenero: %d\n", file_data[i].genero);
+    printf("\tGenero: %c\n", file_data[i].genero);
     printf("\tNome: %s\n", file_data[i].nome);
     printf("\tIdade: %d\n", file_data[i].idade);
-    printf("\tAltura: %lf\n", file_data[i].altura);
+    printf("\tAltura: %.2lf\n", file_data[i].altura);
     printf("\tMes nasc: %d\n", file_data[i].mes);
     printf("\tFama: %d\%\n\n", file_data[i].fama);
   }
 
-  free(file_data);
 
+  writeTxtFile("txtArquivo.txt", file_data, array_size);
+
+  
+  free(file_data); 
+
+
+
+
+
+
+  
   return 0;
 }
