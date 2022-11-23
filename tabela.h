@@ -26,12 +26,8 @@ typedef enum {
   novembro,
   dezembro
 } meses;
-static char mes_str[12][10] = {"janeiro",  "fevereiro", "março",    "abril",
-                               "maio",     "junho",     "julho",    "agosto",
-                               "setembro", "outubro",   "novembro", "dezembro"};
 
-typedef enum { masculino, feminino } generos;
-static char genero_str[2][9] = {"masculino", "feminino"};
+static char mes_str[12][10] = {"janeiro",  "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
 
 typedef struct {
   char genero;
