@@ -27,7 +27,6 @@ typedef enum {
   dezembro
 } meses;
 
-static char mes_str[12][10] = {"janeiro",  "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"};
 
 typedef struct {
   char genero;
@@ -46,11 +45,12 @@ bool writeBinFile(char *filename, type_actors *data, int total);
 // Programa 2
 type_actors *readBinFile(char *filename, int *total);
 bool writeTxtFile(char *filename, type_actors *data, int total);
-int printAll();
-int avgFilter();
+void printFeatures(type_actors *arr);
+double average(double a[], int n);
+void avgFilter(type_actors *arr);
+void limpaBuffer();
 
 // Ambos
-int editarDados();
 bool argsVerify(int args);
 
 #endif // TABELA_H_INCLUDED

@@ -1,5 +1,6 @@
 #include "tabela.h"
 
+
 int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "Portuguese");
 
@@ -48,27 +49,59 @@ int main(int argc, char *argv[]) {
   printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
 
   
-  for (int i = 0; i < ARRAY_SIZE; i++) {
-    printf("----- Pessoa %d -----\n", i);
-    printf("\tGenero: %c\n", file_data[i].genero);
-    printf("\tNome: %s\n", file_data[i].nome);
-    printf("\tIdade: %d\n", file_data[i].idade);
-    printf("\tAltura: %.2lf\n", file_data[i].altura);
-    printf("\tMes nasc: %d\n", file_data[i].mes);
-    printf("\tFama: %d\%\n\n", file_data[i].fama);
+  // for (int i = 0; i < ARRAY_SIZE; i++) {
+  //   printf("----- Pessoa %d -----\n", i);
+  //   printf("\tGenero: %c\n", file_data[i].genero);
+  //   printf("\tNome: %s\n", file_data[i].nome);
+  //   printf("\tIdade: %d\n", file_data[i].idade);
+  //   printf("\tAltura: %.2lf\n", file_data[i].altura);
+  //   printf("\tMes nasc: %d\n", file_data[i].mes);
+  //   printf("\tFama: %d\%\n\n", file_data[i].fama);
+  // }
+
+  if (writeTxtFile("txtAtores.txt", file_data, ARRAY_SIZE)) {
+    printf("[%s]\tSUCESSO: escrita bem sucedida.\n\n", path);
+  } else {
+    printf("[%s]\tERRO: não foi possível escrever o arquivo.\n\n", path);
+    return 1;
   }
 
+  int opcao;
+  bool encerrar = false;
+  
+  do{
+    puts("-------------[MENU]--------------");
+    puts("|\t1. Média Aritmética de algo\t|");
+    puts("|\t2. Imprimir algo\t\t\t|");
+    puts("|\t0. Sair\t\t\t\t\t\t|");
+    puts("---------------------------------");
 
-  writeTxtFile("txtArquivo.txt", file_data, ARRAY_SIZE);
-
+    puts("\nOpcao: ");
+    scanf("%d", &opcao);
+    limpaBuffer();
+    
+    switch(opcao) {
+      case 0:
+        system("cls || clear");
+        encerrar = true;
+        break;
+      case 1:
+        system("cls || clear");
+        avgFilter(file_data);
+        break;
+      case 2:
+        system("cls || clear");
+        printFeatures(file_data);
+        break;
+      default:
+      system("cls || clear");
+      printf("\n[!!!]   Opcao invalida! Tente novamente.\n\n");
+    }
+  }
+  while (!encerrar);
+  
+  puts("\nPrograma encerrado.\n");
   
   free(file_data); 
-
-
-
-
-
-
-  
   return 0;
 }
