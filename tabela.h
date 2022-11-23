@@ -55,6 +55,5 @@ int avgFilter();
 
 // Ambos
 int editarDados();
-int countFileLines(char *filename);
 
 #endif // TABELA_H_INCLUDED

@@ -14,11 +14,8 @@ int main(int argc, char *argv[]) {
   // char *path = argv[1];
   char *path = "meuArquivo.txt";
 
-
-  const int array_size = countFileLines("originalActors.txt");
-
   type_actors *arr_actors;
-  arr_actors = malloc(sizeof(type_actors) * array_size);
+  arr_actors = malloc(sizeof(type_actors) * ARRAY_SIZE);
 
   
   // Lê o conteúdo do arquivo .txt e armazena num array de struct
@@ -30,7 +27,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Pega o conteúdo do array de strutc e escreve (em binário) num arquivo .bin
-  if (writeBinFile("binActors.bin", arr_actors, array_size)) {
+  if (writeBinFile("binActors.bin", arr_actors, ARRAY_SIZE)) {
     printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
   } else {
     printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
@@ -57,7 +54,7 @@ int main(int argc, char *argv[]) {
   printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
 
   
-  for (int i = 0; i < array_size; i++) {
+  for (int i = 0; i < ARRAY_SIZE; i++) {
     printf("----- Pessoa %d -----\n", i);
     printf("\tGenero: %c\n", file_data[i].genero);
     printf("\tNome: %s\n", file_data[i].nome);
@@ -68,7 +65,7 @@ int main(int argc, char *argv[]) {
   }
 
 
-  writeTxtFile("txtArquivo.txt", file_data, array_size);
+  writeTxtFile("txtArquivo.txt", file_data, ARRAY_SIZE);
 
   
   free(file_data); 

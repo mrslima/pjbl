@@ -1,25 +1,6 @@
 #include "tabela.h"
 
 
-int countFileLines(char *filename) {
-  FILE *file;
-  file = fopen(filename, "r");
-
-  if (file == NULL) {
-    puts("Arquivo não pode ser aberto!");
-    return false;
-  }
-  
-  int count = 1;
-  char c;
-  
-  for (c = getc(file); c != EOF; c = getc(file))
-      if (c == '\n') count++;
-
-  if (fclose(file) == EOF) return false;
-
-  return count;
-}
 
 bool writeBinFile(char *filename, type_actors *data, int total) {
   FILE *file;
