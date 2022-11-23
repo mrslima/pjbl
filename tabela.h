@@ -55,5 +55,6 @@ int avgFilter();
 
 // Ambos
 int editarDados();
+bool argsVerify(int args);
 
 #endif // TABELA_H_INCLUDED

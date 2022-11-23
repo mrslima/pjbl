@@ -1,6 +1,19 @@
 #include "tabela.h"
 
+bool argsVerify(int args) {
+  if (args < 1) {
+    puts("ERRO: nenhum arquivo foi passado como parâmetro!");
+    return false;
+  } else if (args == 2) {
+    puts("ERRO: parâmetros insuficientes.");
+    return false;
+  } else if (args > 3) {
+    puts("ERRO: informe apenas 2 parâmetros");
+    return false;
+  }
 
+  return true;
+}
 
 bool writeBinFile(char *filename, type_actors *data, int total) {
   FILE *file;

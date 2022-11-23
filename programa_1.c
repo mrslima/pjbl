@@ -3,13 +3,7 @@
 int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "Portuguese");
 
-  //    if (!(argc < 1)){
-  //        puts("Nenhum arquivo foi passado como parâmetro!");
-  //        return 1;
-  //    } else if (argc > 2) {
-  //        puts("Informe apenas um parâmetro");
-  //        return 1;
-  //    }
+  // if (!argsVerify(argc)) return 1;
 
   // char *path = argv[1];
   char *path = "meuArquivo.txt";
@@ -28,9 +22,9 @@ int main(int argc, char *argv[]) {
 
   // Pega o conteúdo do array de strutc e escreve (em binário) num arquivo .bin
   if (writeBinFile("binActors.bin", arr_actors, ARRAY_SIZE)) {
-    printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
+    printf("[%s]\tSUCESSO: escrita bem sucedida.\n\n", path);
   } else {
-    printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
+    printf("[%s]\tERRO: não foi possível escrever o arquivo.\n\n", path);
     return 1;
   }
 
