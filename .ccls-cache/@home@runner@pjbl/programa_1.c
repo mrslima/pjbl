@@ -1,24 +1,16 @@
 #include "tabela.h"
 
+
 int main(int argc, char *argv[]) {
   setlocale(LC_ALL, "Portuguese");
 
-  //    if (!(argc < 1)){
-  //        puts("Nenhum arquivo foi passado como parâmetro!");
-  //        return 1;
-  //    } else if (argc > 2) {
-  //        puts("Informe apenas um parâmetro");
-  //        return 1;
-  //    }
+  // if (!argsVerify(argc)) return 1;
 
   // char *path = argv[1];
   char *path = "meuArquivo.txt";
 
-
-  const int array_size = countFileLines("originalActors.txt");
-
   type_actors *arr_actors;
-  arr_actors = malloc(sizeof(type_actors) * array_size);
+  arr_actors = malloc(sizeof(type_actors) * ARRAY_SIZE);
 
   
   // Lê o conteúdo do arquivo .txt e armazena num array de struct
@@ -30,10 +22,10 @@ int main(int argc, char *argv[]) {
   }
 
   // Pega o conteúdo do array de strutc e escreve (em binário) num arquivo .bin
-  if (writeBinFile("binActors.bin", arr_actors, array_size)) {
-    printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
+  if (writeBinFile("binActors.bin", arr_actors, ARRAY_SIZE)) {
+    printf("[%s]\tSUCESSO: escrita bem sucedida.\n\n", path);
   } else {
-    printf("[%s]\tERRO: não foi possível ler o arquivo.\n\n", path);
+    printf("[%s]\tERRO: não foi possível escrever o arquivo.\n\n", path);
     return 1;
   }
 
@@ -56,28 +48,50 @@ int main(int argc, char *argv[]) {
   }
   printf("[%s]\tSUCESSO: leitura bem sucedida.\n\n", path);
 
-  
-  for (int i = 0; i < array_size; i++) {
-    printf("----- Pessoa %d -----\n", i);
-    printf("\tGenero: %d\n", file_data[i].genero);
-    printf("\tNome: %s\n", file_data[i].nome);
-    printf("\tIdade: %d\n", file_data[i].idade);
-    printf("\tAltura: %lf\n", file_data[i].altura);
-    printf("\tMes nasc: %d\n", file_data[i].mes);
-    printf("\tFama: %d\%\n\n", file_data[i].fama);
+
+  if (writeTxtFile("txtAtores.txt", file_data, ARRAY_SIZE)) {
+    printf("[%s]\tSUCESSO: escrita bem sucedida.\n\n", path);
+  } else {
+    printf("[%s]\tERRO: não foi possível escrever o arquivo.\n\n", path);
+    return 1;
   }
 
+  int opcao;
+  bool encerrar = false;
+  
+  do{
+    puts("-------------[MENU]--------------");
+    puts("|\t1. Média Aritmética de algo\t|");
+    puts("|\t2. Imprimir algo\t\t\t|");
+    puts("|\t0. Sair\t\t\t\t\t\t|");
+    puts("---------------------------------");
 
-  // writeTxtFile("txtArquivo.txt", file_data, array_size);
-
+    puts("\nOpcao: ");
+    scanf("%d", &opcao);
+    limpaBuffer();
+    
+    switch(opcao) {
+      case 0:
+        system("cls || clear");
+        encerrar = true;
+        break;
+      case 1:
+        system("cls || clear");
+        avgFilter(file_data);
+        break;
+      case 2:
+        system("cls || clear");
+        printFeatures(file_data);
+        break;
+      default:
+      system("cls || clear");
+      printf("\n[!!!]   Opcao invalida! Tente novamente.\n\n");
+    }
+  }
+  while (!encerrar);
+  
+  puts("\nPrograma encerrado.\n");
   
   free(file_data); 
-
-
-
-
-
-
-  
   return 0;
 }

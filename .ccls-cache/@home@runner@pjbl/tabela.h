@@ -26,15 +26,10 @@ typedef enum {
   novembro,
   dezembro
 } meses;
-static char mes_str[12][10] = {"janeiro",  "fevereiro", "março",    "abril",
-                               "maio",     "junho",     "julho",    "agosto",
-                               "setembro", "outubro",   "novembro", "dezembro"};
 
-typedef enum { masculino, feminino } generos;
-static char genero_str[2][9] = {"masculino", "feminino"};
 
 typedef struct {
-  generos genero;
+  char genero;
   char nome[MAX_STR_LEN];
   int idade;
   double altura;
@@ -50,11 +45,12 @@ bool writeBinFile(char *filename, type_actors *data, int total);
 // Programa 2
 type_actors *readBinFile(char *filename, int *total);
 bool writeTxtFile(char *filename, type_actors *data, int total);
-int printAll();
-int avgFilter();
+void printFeatures(type_actors *arr);
+double average(double a[], int n);
+void avgFilter(type_actors *arr);
+void limpaBuffer();
 
 // Ambos
-int editarDados();
-int countFileLines(char *filename);
+bool argsVerify(int args);
 
 #endif // TABELA_H_INCLUDED

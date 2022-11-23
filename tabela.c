@@ -97,7 +97,7 @@ type_actors *readBinFile(char *filename, int *total) {
 
 bool writeTxtFile(char *filename, type_actors *data, int total) {
   FILE *file;
-  file = fopen("txtAtores.txt", "w");
+  file = fopen(filename, "w");
 
   if (file == NULL) {
     puts("Erro ao criar o arquivo!");
@@ -116,18 +116,18 @@ bool writeTxtFile(char *filename, type_actors *data, int total) {
   fclose(file);
 
   // printf("\n%d linhas escritas.\n", total);
-
+  
   return true;
 }
 
 void printFeatures(type_actors *arr) {
   int feature;
-  puts("\t[IMPRIMIR CARACTERÍSTICA]");
-  puts("\t1. Gênero");
+  puts("\t[IMPRIMIR CARACTERISTICA]");
+  puts("\t1. Genero");
   puts("\t2. Idade");
   puts("\t3. Altura");
-  puts("\t4. Mês de nascimento");
-  puts("\t5. Índice de fama");
+  puts("\t4. Mes de nascimento");
+  puts("\t5. Indice de fama");
   puts("\t6. Imprimir tudo");
   puts("\t0. Voltar");
 
@@ -142,7 +142,7 @@ void printFeatures(type_actors *arr) {
       break;
     case 1:
       system("cls || clear");
-      puts("Gênero dos atores:");
+      puts("Genero dos atores:");
       for (int i = 0; i < ARRAY_SIZE; i++) {
         printf("\t%s - %c\n", arr[i].nome, arr[i].genero);
       }
@@ -166,7 +166,7 @@ void printFeatures(type_actors *arr) {
       break;
     case 4:
       system("cls || clear");
-      puts("Mês de nascimento dos atores:");
+      puts("Mes de nascimento dos atores:");
       for (int i = 0; i < ARRAY_SIZE; i++) {
         printf("\t%s - %d\n", arr[i].nome, arr[i].mes);
       }
@@ -174,7 +174,7 @@ void printFeatures(type_actors *arr) {
       break;
     case 5:
       system("cls || clear");
-      puts("Índice de fama dos atores:");
+      puts("Indice de fama dos atores:");
       for (int i = 0; i < ARRAY_SIZE; i++) {
         printf("\t%s - %d\%\n", arr[i].nome, arr[i].fama);
       }
@@ -200,10 +200,7 @@ void printFeatures(type_actors *arr) {
   }
 }
 
-
-
-double average(double a[], int n)
-{
+double average(double a[], int n) {
   int sum = 0;
   for (int i = 0; i < n; i++)
       sum += a[i];
@@ -216,13 +213,13 @@ void avgFilter(type_actors *arr) {
   int opcao, n;
   double avg;
   
-  puts("\t[IMPRIMIR CARACTERÍSTICA]");
+  puts("\t[IMPRIMIR CARACTERISTICA]");
   puts("\t1. Idade");
   puts("\t2. Altura");
-  puts("\t3. Índice de fama");
+  puts("\t3. Indice de fama");
   puts("\t0. Voltar");
 
-  puts("\nOpção: ");
+  puts("\nOpcao: ");
   scanf("%d", &opcao);
   limpaBuffer();
   
@@ -236,7 +233,7 @@ void avgFilter(type_actors *arr) {
         d_arr[i] = arr[i].idade;
       }
       avg = average(d_arr, ARRAY_SIZE);
-      printf(">>> Média da idade dos atores [%.1lf anos]", avg);
+      printf(">>> Media da idade dos atores [%.1lf anos]", avg);
       puts("\n\n");
       break;
     case 2:
@@ -245,7 +242,7 @@ void avgFilter(type_actors *arr) {
         d_arr[i] = arr[i].altura*100;
       }
       avg = average(d_arr, ARRAY_SIZE);
-      printf(">>> Média da altura dos atores: [%.1lfm]", avg);
+      printf(">>> Media da altura dos atores: [%.1lfm]", avg);
       puts("\n\n");
       break;
     case 3:
@@ -254,7 +251,7 @@ void avgFilter(type_actors *arr) {
         d_arr[i] = arr[i].fama;
       }
       avg = average(d_arr, ARRAY_SIZE);
-      printf(">>> Média da fama dos atores: [%.1lf\%]", avg);
+      printf(">>> Media da fama dos atores: [%.1lf\%]", avg);
       puts("\n\n");
       break;
     default:

@@ -1,1 +1,11 @@
-little hell of C
+# The Little Hell of C
+
+// PROGRAMA 1
+
+	gcc -o Bin-Encoder programa_1.c tabela.c
+	nomedoapp1 origialActors.txt binFile.bin
+
+// PROGRAMA 2
+
+	gcc -o Bin-Decoder programa_2.c tabela.c
+	nomedoapp2 binFile.bin txtFile.txt

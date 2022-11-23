@@ -1,4 +1,3 @@
-#include <locale.h>
 #include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -27,7 +26,6 @@ typedef enum {
   dezembro
 } meses;
 
-
 typedef struct {
   char genero;
   char nome[MAX_STR_LEN];
@@ -50,7 +48,7 @@ double average(double a[], int n);
 void avgFilter(type_actors *arr);
 void limpaBuffer();
 
-// Ambos
+// Ambos;
 bool argsVerify(int args);
 
 #endif // TABELA_H_INCLUDED
